@@ -717,7 +717,7 @@ body {
 @keyframes slide-down {
   from {
     opacity: 0;
-    transform: translateY(-100%);
+    transform: translateY(-20px);
   }
   to {
     opacity: 1;
@@ -772,7 +772,7 @@ body {
 }
 
 .animate-slide-down {
-  animation: slide-down 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: slide-down 0.3s ease-out forwards;
 }
 
 .animate-slide-up {

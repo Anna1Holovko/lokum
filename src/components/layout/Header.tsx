@@ -289,7 +289,7 @@ export function Header({ variant: variantProp }: HeaderProps) {
       {isMobileMenuOpen && (
         <div
           id="mobile-menu"
-          className="lg:hidden fixed inset-0 top-20 bg-white z-40 animate-slide-down overflow-y-auto"
+          className="lg:hidden fixed inset-x-0 top-20 bottom-0 bg-white z-[60] animate-slide-down overflow-y-auto"
         >
           <nav className="container-custom py-8" aria-label="Menu mobilne">
             <div className="space-y-1">

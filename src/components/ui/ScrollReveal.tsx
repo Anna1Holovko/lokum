@@ -18,7 +18,6 @@ interface ScrollRevealProps {
   duration?: number;
   className?: string;
   threshold?: number;
-  as?: keyof JSX.IntrinsicElements;
 }
 
 const animationStyles: Record<
@@ -58,15 +57,14 @@ export function ScrollReveal({
   duration = 700,
   className = "",
   threshold = 0.1,
-  as: Component = "div",
 }: ScrollRevealProps) {
   const { ref, isVisible } = useScrollReveal({ threshold });
 
   const styles = animationStyles[animation];
 
   return (
-    <Component
-      ref={ref as React.RefObject<HTMLDivElement>}
+    <div
+      ref={ref}
       className={`transition-all ${className} ${
         isVisible ? styles.visible : styles.initial
       }`}
@@ -77,7 +75,7 @@ export function ScrollReveal({
       }}
     >
       {children}
-    </Component>
+    </div>
   );
 }
 
