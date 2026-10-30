@@ -113,6 +113,7 @@ export function Header({ variant: variantProp }: HeaderProps) {
   const shouldBeSolid = isScrolled || isMobileMenuOpen;
 
   return (
+    <>
     <header
       className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
         shouldBeSolid
@@ -284,120 +285,121 @@ export function Header({ variant: variantProp }: HeaderProps) {
           </button>
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div
-          id="mobile-menu"
-          className="lg:hidden fixed left-0 right-0 top-20 bottom-0 bg-white z-[200] overflow-y-auto shadow-xl"
-        >
-          <nav className="container-custom py-8" aria-label="Menu mobilne">
-            <div className="space-y-1">
-              {/* Kupno Section */}
-              <div className="mb-8">
-                <p className="text-[12px] font-medium tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-4">
-                  Kupno
-                </p>
-                <div className="space-y-1">
-                  <Link
-                    href="/kupno/mieszkania"
-                    className="block py-3 text-[18px] font-heading text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Apartamenty
-                  </Link>
-                  <Link
-                    href="/kupno/domy"
-                    className="block py-3 text-[18px] font-heading text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Domy i rezydencje
-                  </Link>
-                  <Link
-                    href="/kupno/dzialki"
-                    className="block py-3 text-[18px] font-heading text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Działki
-                  </Link>
-                </div>
-              </div>
-
-              {/* Wynajem Section */}
-              <div className="mb-8">
-                <p className="text-[12px] font-medium tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-4">
-                  Wynajem
-                </p>
-                <div className="space-y-1">
-                  <Link
-                    href="/wynajem/mieszkania"
-                    className="block py-3 text-[18px] font-heading text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Apartamenty
-                  </Link>
-                  <Link
-                    href="/wynajem/domy"
-                    className="block py-3 text-[18px] font-heading text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Domy
-                  </Link>
-                </div>
-              </div>
-
-              {/* Divider */}
-              <div className="h-[1px] bg-[var(--color-border)] my-6" />
-
-              {/* Other Links */}
-              <Link
-                href="/ulubione"
-                className="flex items-center gap-3 py-4 text-[16px] text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                <Heart className="w-5 h-5" />
-                Ulubione
-              </Link>
-              <Link
-                href="/o-nas"
-                className="block py-4 text-[16px] text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                O nas
-              </Link>
-              <Link
-                href="/kontakt"
-                className="block py-4 text-[16px] text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Kontakt
-              </Link>
-            </div>
-
-            {/* CTA */}
-            <div className="mt-10 pt-6 border-t border-[var(--color-border)]">
-              <Link
-                href="/logowanie"
-                className="block"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                <Button variant="primary" className="w-full h-14 text-[16px]">
-                  Zaloguj się
-                </Button>
-              </Link>
-              <p className="mt-4 text-center text-[13px] text-[var(--color-text-muted)]">
-                lub zadzwoń:{" "}
-                <a
-                  href="tel:+48221234567"
-                  className="text-[var(--color-accent)] hover:underline"
-                >
-                  +48 22 123 45 67
-                </a>
-              </p>
-            </div>
-          </nav>
-        </div>
-      )}
     </header>
+
+    {/* Mobile Menu - Outside header for proper z-index */}
+    {isMobileMenuOpen && (
+      <div
+        id="mobile-menu"
+        className="lg:hidden fixed left-0 right-0 top-20 bottom-0 bg-white z-[200] overflow-y-auto shadow-xl"
+      >
+        <nav className="container-custom py-8" aria-label="Menu mobilne">
+          <div className="space-y-1">
+            {/* Kupno Section */}
+            <div className="mb-8">
+              <p className="text-[12px] font-medium tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-4">
+                Kupno
+              </p>
+              <div className="space-y-1">
+                <Link
+                  href="/kupno/mieszkania"
+                  className="block py-3 text-[18px] font-heading text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Apartamenty
+                </Link>
+                <Link
+                  href="/kupno/domy"
+                  className="block py-3 text-[18px] font-heading text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Domy i rezydencje
+                </Link>
+                <Link
+                  href="/kupno/dzialki"
+                  className="block py-3 text-[18px] font-heading text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Działki
+                </Link>
+              </div>
+            </div>
+
+            {/* Wynajem Section */}
+            <div className="mb-8">
+              <p className="text-[12px] font-medium tracking-[0.1em] uppercase text-[var(--color-text-muted)] mb-4">
+                Wynajem
+              </p>
+              <div className="space-y-1">
+                <Link
+                  href="/wynajem/mieszkania"
+                  className="block py-3 text-[18px] font-heading text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Apartamenty
+                </Link>
+                <Link
+                  href="/wynajem/domy"
+                  className="block py-3 text-[18px] font-heading text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Domy
+                </Link>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="h-[1px] bg-[var(--color-border)] my-6" />
+
+            {/* Other Links */}
+            <Link
+              href="/ulubione"
+              className="flex items-center gap-3 py-4 text-[16px] text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <Heart className="w-5 h-5" />
+              Ulubione
+            </Link>
+            <Link
+              href="/o-nas"
+              className="block py-4 text-[16px] text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              O nas
+            </Link>
+            <Link
+              href="/kontakt"
+              className="block py-4 text-[16px] text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Kontakt
+            </Link>
+          </div>
+
+          {/* CTA */}
+          <div className="mt-10 pt-6 border-t border-[var(--color-border)]">
+            <Link
+              href="/logowanie"
+              className="block"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <Button variant="primary" className="w-full h-14 text-[16px]">
+                Zaloguj się
+              </Button>
+            </Link>
+            <p className="mt-4 text-center text-[13px] text-[var(--color-text-muted)]">
+              lub zadzwoń:{" "}
+              <a
+                href="tel:+48221234567"
+                className="text-[var(--color-accent)] hover:underline"
+              >
+                +48 22 123 45 67
+              </a>
+            </p>
+          </div>
+        </nav>
+      </div>
+    )}
+    </>
   );
 }
