@@ -202,10 +202,10 @@ export function Header({ variant: variantProp }: HeaderProps) {
 
                 {/* Dropdown Menu - seamless hover with invisible bridge */}
                 {link.dropdown && activeDropdown === link.name && (
-                  <div className="absolute top-full left-0 min-w-[220px]">
+                  <div className="absolute top-full left-0 min-w-[220px] z-[100]">
                     {/* Invisible bridge to prevent hover gap */}
                     <div className="h-2" />
-                    <div className="bg-white border border-[var(--color-border)] shadow-lg animate-fade-in-down">
+                    <div className="bg-white border border-[var(--color-border)] shadow-xl animate-fade-in-down rounded-sm">
                       <div className="py-2">
                         {link.dropdown.map((item) => (
                           <Link
