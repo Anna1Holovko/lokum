@@ -61,6 +61,18 @@ export function Header({ variant: variantProp }: HeaderProps) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Prevent background scrolling when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
   // Handle keyboard navigation
   const handleDropdownKeyDown = useCallback(
     (e: React.KeyboardEvent, dropdownName: string) => {
@@ -97,10 +109,13 @@ export function Header({ variant: variantProp }: HeaderProps) {
     { name: "Kontakt", href: "/kontakt" },
   ];
 
+  // Header should be solid when mobile menu is open
+  const shouldBeSolid = isScrolled || isMobileMenuOpen;
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
+        shouldBeSolid
           ? "bg-white/95 backdrop-blur-xl border-b border-[var(--color-border)]"
           : "bg-transparent"
       }`}
@@ -120,7 +135,7 @@ export function Header({ variant: variantProp }: HeaderProps) {
           >
             <span
               className={`text-2xl font-heading tracking-[0.15em] uppercase transition-colors duration-300 ${
-                isScrolled ? "text-[var(--color-text-primary)]" : "text-white"
+                shouldBeSolid ? "text-[var(--color-text-primary)]" : "text-white"
               }`}
             >
               Lokum
@@ -143,7 +158,7 @@ export function Header({ variant: variantProp }: HeaderProps) {
                 {link.dropdown ? (
                   <button
                     className={`flex items-center gap-1.5 px-4 py-3 text-[15px] font-normal transition-all duration-300 relative group ${
-                      isScrolled
+                      shouldBeSolid
                         ? "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"
                         : "text-white/80 hover:text-white"
                     }`}
@@ -174,7 +189,7 @@ export function Header({ variant: variantProp }: HeaderProps) {
                   <Link
                     href={link.href}
                     className={`block px-4 py-3 text-[15px] font-normal transition-all duration-300 relative group ${
-                      isScrolled
+                      shouldBeSolid
                         ? "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"
                         : "text-white/80 hover:text-white"
                     }`}
@@ -215,7 +230,7 @@ export function Header({ variant: variantProp }: HeaderProps) {
             <Link
               href="/szukaj"
               className={`w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 ${
-                isScrolled
+                shouldBeSolid
                   ? "text-[var(--color-text-muted)] hover:text-[var(--color-accent)] hover:bg-[var(--color-accent-light)]"
                   : "text-white/70 hover:text-white hover:bg-white/10"
               }`}
@@ -226,7 +241,7 @@ export function Header({ variant: variantProp }: HeaderProps) {
             <Link
               href="/ulubione"
               className={`w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 ${
-                isScrolled
+                shouldBeSolid
                   ? "text-[var(--color-text-muted)] hover:text-[var(--color-accent)] hover:bg-[var(--color-accent-light)]"
                   : "text-white/70 hover:text-white hover:bg-white/10"
               }`}
@@ -236,10 +251,10 @@ export function Header({ variant: variantProp }: HeaderProps) {
             </Link>
             <Link href="/logowanie" className="ml-3">
               <Button
-                variant={isScrolled ? "outline" : "primary"}
+                variant={shouldBeSolid ? "outline" : "primary"}
                 size="sm"
                 className={
-                  isScrolled
+                  shouldBeSolid
                     ? ""
                     : "bg-white/10 border border-white/30 text-white hover:bg-white/20 backdrop-blur-sm"
                 }
@@ -252,7 +267,7 @@ export function Header({ variant: variantProp }: HeaderProps) {
           {/* Mobile Menu Button */}
           <button
             className={`lg:hidden w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 ${
-              isScrolled
+              shouldBeSolid
                 ? "text-[var(--color-text-primary)] hover:bg-[var(--color-background)]"
                 : "text-white hover:bg-white/10"
             }`}
@@ -274,7 +289,7 @@ export function Header({ variant: variantProp }: HeaderProps) {
       {isMobileMenuOpen && (
         <div
           id="mobile-menu"
-          className="lg:hidden fixed inset-0 top-20 bg-white z-40 animate-fade-in"
+          className="lg:hidden fixed inset-0 top-20 bg-white z-40 animate-slide-down overflow-y-auto"
         >
           <nav className="container-custom py-8" aria-label="Menu mobilne">
             <div className="space-y-1">

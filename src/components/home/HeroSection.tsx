@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { MAJOR_CITIES } from "@/types/property";
 import { Search, MapPin, ArrowDown, ChevronDown, Check } from "lucide-react";
 
@@ -237,24 +238,34 @@ export function HeroSection() {
 
             {/* Stats row */}
             <div
-              className={`flex gap-12 transition-all duration-1000 delay-1100 ${
+              className={`flex gap-8 md:gap-12 transition-all duration-1000 delay-1100 ${
                 isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
               }`}
             >
-              {[
-                { value: "2,500+", label: "Ofert" },
-                { value: "50+", label: "Miast" },
-                { value: "0 zł", label: "Prowizji" },
-              ].map((stat, i) => (
-                <div key={stat.label} className="group cursor-default">
-                  <div className="text-[28px] md:text-[36px] font-heading text-white group-hover:text-[var(--color-accent)] transition-colors duration-300">
-                    {stat.value}
-                  </div>
-                  <div className="text-[11px] text-white/40 uppercase tracking-[0.15em]">
-                    {stat.label}
-                  </div>
+              <div className="group cursor-default">
+                <div className="text-[28px] md:text-[36px] font-heading text-white group-hover:text-[var(--color-accent)] transition-colors duration-300">
+                  <AnimatedCounter value={2500} suffix="+" duration={2000} />
                 </div>
-              ))}
+                <div className="text-[11px] text-white/40 uppercase tracking-[0.15em]">
+                  Ofert
+                </div>
+              </div>
+              <div className="group cursor-default">
+                <div className="text-[28px] md:text-[36px] font-heading text-white group-hover:text-[var(--color-accent)] transition-colors duration-300">
+                  <AnimatedCounter value={50} suffix="+" duration={1500} />
+                </div>
+                <div className="text-[11px] text-white/40 uppercase tracking-[0.15em]">
+                  Miast
+                </div>
+              </div>
+              <div className="group cursor-default">
+                <div className="text-[28px] md:text-[36px] font-heading text-white group-hover:text-[var(--color-accent)] transition-colors duration-300">
+                  0 zł
+                </div>
+                <div className="text-[11px] text-white/40 uppercase tracking-[0.15em]">
+                  Prowizji
+                </div>
+              </div>
             </div>
           </div>
 

@@ -72,6 +72,9 @@ export function PropertyCard({
             </div>
           )}
 
+          {/* Hover overlay */}
+          <div className="property-image-overlay" />
+
           {/* Subtle gradient overlay at bottom */}
           <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
 
@@ -88,16 +91,16 @@ export function PropertyCard({
           {/* Favorite button */}
           <button
             onClick={handleFavoriteClick}
-            className={`absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm ${
+            className={`favorite-btn absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm ${
               isFavorite
-                ? "bg-[#EF4444] text-white shadow-[0_4px_12px_rgba(239,68,68,0.4)]"
+                ? "bg-[#EF4444] text-white shadow-[0_4px_12px_rgba(239,68,68,0.4)] favorite-btn-active"
                 : "bg-white/20 text-white hover:bg-white/30"
             }`}
             aria-label={isFavorite ? "Usuń z ulubionych" : "Dodaj do ulubionych"}
             aria-pressed={isFavorite}
           >
             <Heart
-              className={`w-5 h-5 transition-all ${
+              className={`favorite-icon w-5 h-5 transition-all ${
                 isFavorite ? "fill-white scale-110" : ""
               }`}
               aria-hidden="true"
