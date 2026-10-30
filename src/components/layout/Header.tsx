@@ -114,7 +114,7 @@ export function Header({ variant: variantProp }: HeaderProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
         shouldBeSolid
           ? "bg-white/95 backdrop-blur-xl border-b border-[var(--color-border)]"
           : "bg-transparent"
@@ -289,7 +289,7 @@ export function Header({ variant: variantProp }: HeaderProps) {
       {isMobileMenuOpen && (
         <div
           id="mobile-menu"
-          className="lg:hidden fixed inset-x-0 top-20 bottom-0 bg-white z-[60] animate-slide-down overflow-y-auto"
+          className="lg:hidden fixed inset-x-0 top-20 bottom-0 bg-white z-[200] animate-slide-down overflow-y-auto shadow-xl"
         >
           <nav className="container-custom py-8" aria-label="Menu mobilne">
             <div className="space-y-1">
